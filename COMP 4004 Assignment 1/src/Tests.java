@@ -1,12 +1,13 @@
 import static org.junit.Assert.*;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
 
-public class CardTest {
-	
+public class Tests {
+
 	private Card c1;
 	private Card c2;
 	private Card c3;
@@ -19,7 +20,9 @@ public class CardTest {
 	private Integer c1Rank = 2, c2Rank = 3, c3Rank = 12, c4Rank = 14, c5Rank = null, c6Rank = null;
 	private String c1CardRank = "Two", c2CardRank = "Three", c3CardRank = "Queen", c4CardRank = "Ace";
 	private String c1Suit = "Diamonds", c2Suit = "Spades", c3Suit = "Clubs", c4Suit = "Hearts", c7Suit = null, c8Suit = null;
-
+	private PokerHand ph1;
+	private PokerHand ph2;
+	
 	@Before
 	public void setUp() throws Exception {
 		cNull = new Card();
@@ -31,6 +34,22 @@ public class CardTest {
 		c6 = new Card("OneDiamond");
 		c7 = new Card("QueenJays");
 		c8 = new Card("AceMcCloud");
+		
+		Card[] hand1 = new Card[5];
+		hand1[0] = new Card("TwoHearts");
+		hand1[1] = new Card("AceSpades");
+		hand1[2] = new Card("KingClubs");
+		hand1[3] = new Card("ThreeDiamonds");
+		hand1[4] = new Card("SevenJays");
+		ph1 = new PokerHand(hand1);
+		
+		Card[] hand2 = new Card[5];
+		hand2[0] = new Card("TwoHearts");
+		hand2[1] = new Card("AceSpades");
+		hand2[2] = new Card("TwoHearts");
+		hand2[3] = new Card("ThreeDiamonds");
+		hand2[4] = new Card("SevenSpades");
+		ph2 = new PokerHand(hand2);
 	}
 
 	@After
@@ -44,11 +63,19 @@ public class CardTest {
 		c6 = null;
 		c7 = null;
 		c8 = null;
+		
+		ph1 = null;
+		ph2 = null;
 	}
 
-	public void testConstructors() {
+	public void testCardConstructors() {
 		assertNull("Card was not null as expected", cNull);
 		assertNotNull("Card was not instantiated as expected",c2);
+	}
+	
+	@Test
+	public void testPokerHandConstructor() {
+		assertNotNull("Hand was not instantiated as expected",ph1);	
 	}
 
 	@Test
@@ -93,4 +120,5 @@ public class CardTest {
 		assertTrue("c1String toString does not contain cardRank", c1String.contains(c1.getCardRank()));
 		assertTrue("c1String toString does not contain suit", c1String.contains(c1.getSuit()));
 	}
+
 }

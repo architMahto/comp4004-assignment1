@@ -4,7 +4,9 @@ import java.util.TreeMap;
 
 public class Constants {
 	
+	// card ranks
 	Map<Integer,String> ranks = new TreeMap<>();
+	// list of suits
 	ArrayList<String> suits = new ArrayList<>();
 	
 	public Constants() {
@@ -21,7 +23,7 @@ public class Constants {
 		ranks.put(11, "Jack");
 		ranks.put(12, "Queen");
 		ranks.put(13, "King");
-		ranks.put(14, "Ace");
+		ranks.put(14, "Ace");		
 		
 		suits.add("Clubs");
 		suits.add("Spades");
