@@ -4,8 +4,8 @@ import java.util.TreeMap;
 
 public class Constants {
 	
-	public static Map<Integer,String> ranks = new TreeMap<>();
-	public static ArrayList<String> suits = new ArrayList<>();
+	Map<Integer,String> ranks = new TreeMap<>();
+	ArrayList<String> suits = new ArrayList<>();
 	
 	public Constants() {
 		
@@ -28,20 +28,6 @@ public class Constants {
 		suits.add("Diamonds");
 		suits.add("Hearts");
 		
-	}
-	
-	public static void main(String[] args) {
-		Constants constants = new Constants();
-		
-		for (Integer r : constants.ranks.keySet())
-			System.out.println(r + " => " + constants.ranks.get(r));
-		
-		System.out.println();
-		
-		for (String s : suits)
-			System.out.println(s);
-			
-			
 	}
 	
 }
