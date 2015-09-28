@@ -1,9 +1,7 @@
 import static org.junit.Assert.*;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 
@@ -19,15 +17,8 @@ public class CardTest {
 	private Card c8;
 	private Card cNull = null;
 	private Integer c1Rank = 2, c2Rank = 3, c3Rank = 12, c4Rank = 14, c5Rank = null, c6Rank = null;
+	private String c1CardRank = "Two", c2CardRank = "Three", c3CardRank = "Queen", c4CardRank = "Ace";
 	private String c1Suit = "Diamonds", c2Suit = "Spades", c3Suit = "Clubs", c4Suit = "Hearts", c7Suit = null, c8Suit = null;
-
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Before
 	public void setUp() throws Exception {
@@ -61,11 +52,19 @@ public class CardTest {
 	}
 
 	@Test
-	public void testGetCardRank() {
+	public void testGetRank() {
 		assertEquals("Card rank was not initialized as expected", c1.getRank(), c1Rank);
 		assertEquals("Card rank was not initialized as expected", c2.getRank(), c2Rank);
 		assertEquals("Card rank was not initialized as expected", c3.getRank(), c3Rank);
 		assertEquals("Card rank was not initialized as expected", c4.getRank(), c4Rank);
+	}
+	
+	@Test
+	public void testGetCardRank() {
+		assertEquals("Card rank was not initialized as expected", c1.getCardRank(), c1CardRank);
+		assertEquals("Card rank was not initialized as expected", c2.getCardRank(), c2CardRank);
+		assertEquals("Card rank was not initialized as expected", c3.getCardRank(), c3CardRank);
+		assertEquals("Card rank was not initialized as expected", c4.getCardRank(), c4CardRank);
 	}
 	
 	@Test
@@ -86,5 +85,12 @@ public class CardTest {
 	public void testInvalidCardSuit() {
 		assertEquals("Card suit was not given null for invalid suit", c7.getSuit(), c7Suit);
 		assertEquals("Card suit was not given null for invalid suit", c8.getSuit(), c8Suit);
+	}
+	
+	@Test
+	public void testToString() {
+		String c1String = c1.toString();
+		assertTrue("c1String toString does not contain cardRank", c1String.contains(c1.getCardRank()));
+		assertTrue("c1String toString does not contain suit", c1String.contains(c1.getSuit()));
 	}
 }
