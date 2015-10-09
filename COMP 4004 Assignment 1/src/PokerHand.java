@@ -13,6 +13,9 @@ public class PokerHand {
 		if (invalidHandTest(hand))
 			throw new IllegalArgumentException("This hand contains duplicates or an invalid card.");
 		
+		if (hand.length != 5)
+			throw new IllegalArgumentException("This hand doesn't contain the right number of cards.");
+		
 		for (int i = 0; i < 5; i++)
 			this.hand[i] = hand[i];
 	}
@@ -162,7 +165,7 @@ public class PokerHand {
 		Map<Integer,Integer> repetitionMap = new HashMap<Integer,Integer>();
 		for (Card c : this.hand) {
 			if (repetitionMap.containsKey(c.getRank())) {
-				repetitionMap.put(c.getRank(), repetitionMap.get(c.getRank()));
+				repetitionMap.put(c.getRank(), repetitionMap.get(c.getRank()) + 1);
 			} else {
 				repetitionMap.put(c.getRank(), 1);
 			}

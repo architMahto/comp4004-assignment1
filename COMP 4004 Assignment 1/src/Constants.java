@@ -10,6 +10,7 @@ public class Constants {
 	ArrayList<String> suits = new ArrayList<>();
 	// combination of cards
 	String[] deckOfCards = new String[52];
+	Map<String, Integer> scoreOfHands = new TreeMap<>();
 	
 	
 	public Constants() {
@@ -41,6 +42,10 @@ public class Constants {
 		deckOfCards[47] = "NineDiamonds"; deckOfCards[48] = "TenDiamonds"; deckOfCards[49] = "JackDiamonds"; deckOfCards[50] = "QueenDiamonds";
 		deckOfCards[51] = "KingDiamonds";
 		
+		// Initializing the score for each hand
+		scoreOfHands.put("High Card",1); scoreOfHands.put("One Pair",2); scoreOfHands.put("Two Pair",3); scoreOfHands.put("Three of a Kind",4);
+		scoreOfHands.put("Straight",5); scoreOfHands.put("Flush",6); scoreOfHands.put("Full House",7); scoreOfHands.put("Four of a Kind",7);
+		scoreOfHands.put("Straight Flush",9); scoreOfHands.put("Royal Flush",10); 
 	}
 	
 }
