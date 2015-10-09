@@ -1,44 +1,50 @@
 
 public class Player {
 	
-	String playerID;
-	PokerHand pokerHand = new PokerHand();
-	Integer playerRanking;
-	Constants constants = new Constants();
-
-	public Player(String input) {
-		String[] inputSplit = input.split(" ");
+	private String id;
+	private PokerHand pokerHand;
+	private String handType;
+	
+	public Player (String[] playerInfo) {
+		this.id = playerInfo[0];
 		
-		playerID = inputSplit[0];
+		Card[] hand = new Card[5];
+		for (int i = 0, j = 1; j < playerInfo.length; i++, j++) {
+			hand[i] = new Card(playerInfo[i]);
+		}		
+		this.pokerHand = new PokerHand(hand);
 		
-		for (int i = 0, j = 1; i < inputSplit.length; i++, j++)
-			pokerHand.hand[i] = new Card(inputSplit[j]);
+		this.handType = null;
+	}
+		
+	public void setHandType () {
+		if (this.pokerHand.checkRoyalFlush())
+			this.handType = "Royal Flush";
+		else if (this.pokerHand.checkStraightFlush())
+			this.handType = "Straight Flush";
+		else if (this.pokerHand.checkFourOfAKind())
+			this.handType = "Four of a Kind";
+		else if (this.pokerHand.checkFullHouse())
+			this.handType = "Full House";
+		else if (this.pokerHand.checkFlush())
+			this.handType = "Flush";
+		else if (this.pokerHand.checkStraight())
+			this.handType = "Straight";
+		else if (this.pokerHand.checkThreeOfAKind())
+			this.handType = "Three of a Kind";
+		else if (this.pokerHand.checkTwoPair())
+			this.handType = "Two Pair";
+		else if (this.pokerHand.checkOnePair())
+			this.handType = "One Pair";
+		else
+			this.handType = null;
 	}
 	
-	public void setRanking() {
-		if (this.pokerHand.checkRoyalFlush()) {
-			this.playerRanking = 1;
-		} else if (this.pokerHand.checkStraightFlush()) {
-			this.playerRanking = 2;
-		} else if (this.pokerHand.checkFourOfAKind()) {
-			this.playerRanking = 3;
-		} else if (this.pokerHand.checkFullHouse()) {
-			this.playerRanking = 4;
-		} else if (this.pokerHand.checkFlush()) {
-			this.playerRanking = 5;
-		} else if (this.pokerHand.checkStraight()) {
-			this.playerRanking = 6;
-		} else if (this.pokerHand.checkThreeOfAKind()) {
-			this.playerRanking = 7;
-		} else if (this.pokerHand.checkTwoPair()) {
-			this.playerRanking = 8;
-		} else if (this.pokerHand.checkOnePair()) {
-			this.playerRanking = 9;
-		}
+	public String getHandType() {
+		return this.handType;
 	}
 	
-	public Integer getRanking() {
-		return this.playerRanking;
+	public String getID() {
+		return this.id;
 	}
-
 }
