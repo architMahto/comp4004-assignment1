@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 
 public class Card {
 	
@@ -5,19 +7,18 @@ public class Card {
 	private String suit;
 	private String cardRank;
 	Constants constants = new Constants();
-	
-	public Card() {
-		
-	}
 
 	public Card(String cardName) {
+		
+		if (!Arrays.asList(constants.deckOfCards).contains(cardName))
+			throw new IllegalArgumentException("Card must contain rank or suit");
 		
 		for (Integer r : constants.ranks.keySet()) {
 			if (cardName.indexOf(constants.ranks.get(r)) != -1) {
 				this.rank = r;
 				this.cardRank = constants.ranks.get(r);
 				break;
-			}
+			} 
 		}
 		
 		for (String s : constants.suits) {

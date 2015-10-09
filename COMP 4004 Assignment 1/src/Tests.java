@@ -8,6 +8,9 @@ import org.junit.Test;
 
 public class Tests {
 
+	private Integer c1Rank = 2, c2Rank = 3, c3Rank = 12, c4Rank = 14;
+	private String c1CardRank = "Two", c2CardRank = "Three", c3CardRank = "Queen", c4CardRank = "Ace";
+	private String c1Suit = "Diamonds", c2Suit = "Spades", c3Suit = "Clubs", c4Suit = "Hearts";
 	private Card c1;
 	private Card c2;
 	private Card c3;
@@ -16,45 +19,17 @@ public class Tests {
 	private Card c6;
 	private Card c7;
 	private Card c8;
-	private Card cNull = null;
-	private Integer c1Rank = 2, c2Rank = 3, c3Rank = 12, c4Rank = 14, c5Rank = null, c6Rank = null;
-	private String c1CardRank = "Two", c2CardRank = "Three", c3CardRank = "Queen", c4CardRank = "Ace";
-	private String c1Suit = "Diamonds", c2Suit = "Spades", c3Suit = "Clubs", c4Suit = "Hearts", c7Suit = null, c8Suit = null;
-	private PokerHand ph1;
-	private PokerHand ph2;
 	
 	@Before
 	public void setUp() throws Exception {
-		cNull = new Card();
 		c1 = new Card("TwoDiamonds");
 		c2 = new Card("ThreeSpades");
 		c3 = new Card("QueenClubs");
 		c4 = new Card("AceHearts");
-		c5 = new Card("FifteenClubs");
-		c6 = new Card("OneDiamond");
-		c7 = new Card("QueenJays");
-		c8 = new Card("AceMcCloud");
-		
-		Card[] hand1 = new Card[5];
-		hand1[0] = new Card("TwoHearts");
-		hand1[1] = new Card("AceSpades");
-		hand1[2] = new Card("KingClubs");
-		hand1[3] = new Card("ThreeDiamonds");
-		hand1[4] = new Card("SevenJays");
-		ph1 = new PokerHand(hand1);
-		
-		Card[] hand2 = new Card[5];
-		hand2[0] = new Card("TwoHearts");
-		hand2[1] = new Card("AceSpades");
-		hand2[2] = new Card("TwoHearts");
-		hand2[3] = new Card("ThreeDiamonds");
-		hand2[4] = new Card("SevenSpades");
-		ph2 = new PokerHand(hand2);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		cNull = null;
 		c1 = null;
 		c2 = null;
 		c3 = null;
@@ -63,21 +38,29 @@ public class Tests {
 		c6 = null;
 		c7 = null;
 		c8 = null;
-		
-		ph1 = null;
-		ph2 = null;
 	}
-
+	/*
+	 * Testing constructors for Card class
+	 */
+	@Test
 	public void testCardConstructors() {
-		assertNull("Card was not null as expected", cNull);
-		assertNotNull("Card was not instantiated as expected",c2);
+		assertNotNull("Card was not instantiated as expected", c1);
+		assertNotNull("Card was not instantiated as expected", c2);
+		assertNotNull("Card was not instantiated as expected", c3);
+		assertNotNull("Card was not instantiated as expected", c4);
 	}
 	
-	@Test
-	public void testPokerHandConstructor() {
-		assertNotNull("Hand was not instantiated as expected",ph1);	
+	@Test(expected=IllegalArgumentException.class)
+	public void testInvalidCardConstructors() {
+		c5 = new Card("FifteenClubs");
+		c6 = new Card("OneDiamond");
+		c7 = new Card("QueenJays");
+		c8 = new Card("AceMcCloud");
 	}
-
+	
+	/*
+	 * Testing getters and toString() method for Card class
+	 */
 	@Test
 	public void testGetRank() {
 		assertEquals("Card rank was not initialized as expected", c1.getRank(), c1Rank);
@@ -95,7 +78,7 @@ public class Tests {
 	}
 	
 	@Test
-	public void testGetCardSuit() {
+	public void testGetSuit() {
 		assertEquals("Card suit was not initialized as expected", c1.getSuit(), c1Suit);
 		assertEquals("Card suit was not initialized as expected", c2.getSuit(), c2Suit);
 		assertEquals("Card suit was not initialized as expected", c3.getSuit(), c3Suit);
@@ -103,19 +86,8 @@ public class Tests {
 	}
 	
 	@Test
-	public void testInvalidCardRank() {
-		assertEquals("Card rank was not given null for invalid rank", c5.getRank(), c5Rank);
-		assertEquals("Card rank was not given null for invalid rank", c6.getRank(), c6Rank);
-	}
-	
-	@Test
-	public void testInvalidCardSuit() {
-		assertEquals("Card suit was not given null for invalid suit", c7.getSuit(), c7Suit);
-		assertEquals("Card suit was not given null for invalid suit", c8.getSuit(), c8Suit);
-	}
-	
-	@Test
 	public void testToString() {
+
 		String c1String = c1.toString();
 		assertTrue("c1String toString does not contain cardRank", c1String.contains(c1.getCardRank()));
 		assertTrue("c1String toString does not contain suit", c1String.contains(c1.getSuit()));

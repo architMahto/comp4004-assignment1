@@ -56,7 +56,7 @@ public class PokerHand {
 	}
 	
 	/*
-	 * Functions to check poker hands
+	 * Methods to check poker hands
 	*/
 	
 	// check Royal Flush
