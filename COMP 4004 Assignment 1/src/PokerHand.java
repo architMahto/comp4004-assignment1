@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -105,7 +106,7 @@ public class PokerHand {
 	
 	// check Straight
 	public boolean checkStraight() {
-		int maxDifference = 1, difference = 0;
+		/*int maxDifference = 1, difference = 0;
 		Card tempCard = null;
 		
 		for (Card c : this.hand) {
@@ -117,6 +118,20 @@ public class PokerHand {
 			tempCard = c;
 		}
 		
+		return true;*/
+		
+		int[] handRank = new int[5];
+		int diff;
+		for (int i = 0; i < this.hand.length; i++)
+			handRank[i] = this.hand[i].getRank();
+		
+		Arrays.sort(handRank);
+		
+		for (int i = 0, j = 1; j < handRank.length; i++, j++) {
+			diff = Math.abs(handRank[j] - handRank[i]);
+			if (diff != 1)
+				return false;
+		}
 		return true;
 	}
 	
@@ -139,6 +154,20 @@ public class PokerHand {
 		if (checkNumberOfPairs(1))
 			return true;
 		return false;
+	}
+	
+	// get Highest Card
+	public Card getHighestCard() {
+		int max = 0;
+		Card maxCard = null;
+		
+		for (Card c : this.hand) {
+			if (c.getRank() > max)
+				max = c.getRank();
+				maxCard = c;
+		}
+		
+		return maxCard;
 	}
 	
 	// check if hand if full of high cards

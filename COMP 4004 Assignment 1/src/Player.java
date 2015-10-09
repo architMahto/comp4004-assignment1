@@ -1,54 +1,73 @@
 
 public class Player {
 	
-	private String ID;
-	private PokerHand pokerHand;
-	private String handType;
+	public String ID;
+	public PokerHand pokerHand;
+	public String handType;
+	public String playerInfo;
+	public String[] playerInfoArray;
 	
 	public Player (String playerInfo) {
-		String[] playerInfoSplit = playerInfo.split(" ");
+		this.playerInfo = playerInfo;
+		this.playerInfoArray = playerInfo.split(" ");
 		
-		if (playerInfoSplit.length != 6)
+		if (playerInfoArray.length != 6)
 			throw new IllegalArgumentException("Input does not contain player id or right number of cards");
 		
-		this.ID = playerInfoSplit[0];
+		this.ID = playerInfoArray[0];
 		
 		Card[] hand = new Card[5];
-		for (int i = 0, j = 1; j < playerInfoSplit.length; i++, j++) {
-			hand[i] = new Card(playerInfoSplit[j]);
+		for (int i = 0, j = 1; j < playerInfoArray.length; i++, j++) {
+			hand[i] = new Card(playerInfoArray[j]);
 		}		
 		this.pokerHand = new PokerHand(hand);
+		this.handType = setHandType();
 	}
 	
 	public String getID() {
 		return this.ID;
 	}
 	
-	public void setHandType() {
-		if (this.pokerHand.checkRoyalFlush()) {
-			this.handType = "Royal Flush";
-		} else if (this.pokerHand.checkStraightFlush()) { 
-			this.handType = "Straight Flush";
-		} else if (this.pokerHand.checkFourOfAKind()) {
-			this.handType = "Four of a Kind";
-		} else if (this.pokerHand.checkFullHouse()) {
-			this.handType = "Full House";
-		} else if (this.pokerHand.checkFlush()) {
-			this.handType = "Flush";
-		} else if (this.pokerHand.checkStraight()) {
-			this.handType = "Straight";
-		} else if (this.pokerHand.checkThreeOfAKind()) {
-			this.handType = "Three of a Kind";
-		} else if (this.pokerHand.checkTwoPair()) {
-			this.handType = "Two Pair";
-		} else if (this.pokerHand.checkOnePair()) {
-			this.handType = "One Pair";
-		} else {
-			this.handType = "High Card";
-		}
+	public String setHandType() {
+		if (this.pokerHand.checkRoyalFlush()) 
+			return "Royal Flush";
+		
+		if (this.pokerHand.checkStraightFlush()) 
+			return "Straight Flush";
+		
+		if (this.pokerHand.checkFourOfAKind()) 
+			return "Four of a Kind";
+		
+		if (this.pokerHand.checkFullHouse()) 
+			return "Full House";
+		
+		if (this.pokerHand.checkFlush()) 
+			return "Flush";
+		
+		if (this.pokerHand.checkStraight()) 
+			return "Straight";
+		
+		if (this.pokerHand.checkThreeOfAKind()) 
+			return "Three of a Kind";
+		
+		if (this.pokerHand.checkTwoPair()) 
+			return "Two Pair";
+		
+		if (this.pokerHand.checkOnePair()) 
+			return "One Pair";
+			
+		return "High Card";
 	}
 	
 	public String getHandType() {
 		return this.handType;
+	}
+
+	public String getPlayerInfo() {
+		return this.playerInfo;
+	}
+
+	public String[] getPlayerInfoArray() {
+		return this.playerInfoArray;
 	}
 }
