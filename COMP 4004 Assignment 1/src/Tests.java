@@ -134,7 +134,6 @@ public class Tests {
 		ipl4 = new Player("ipl4 TenSpades JackSpades QueenSpades KingSpades AceSpades");
 		ipl5 = new Player("ipl5 TwoSpades FiveDiamonds SevenHearts TenClubs AceClubs");
 		ipl6 = new Player("ipl1 TwoSpades FiveHearts SixDiamonds SixClubs JackHearts");
-		
 	}
 
 	@After
@@ -145,6 +144,7 @@ public class Tests {
 	/*
 	 * Testing constructors for Card class
 	 */
+	
 	public void testCardConstructors() {
 		assertNotNull("Card was not instantiated as expected", c1);
 		assertNotNull("Card was not instantiated as expected", c2);
@@ -161,6 +161,7 @@ public class Tests {
 	/*
 	 * Testing getters and toString() method for Card class
 	 */
+	
 	@Test
 	public void testGetRank() {
 		assertEquals("Card rank was not initialized as expected", c1.getRank(), c1Rank);

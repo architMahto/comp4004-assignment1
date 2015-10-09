@@ -29,4 +29,5 @@ public class Game {
 				return players[i].getPlayerInfo().equals(players[j].getPlayerInfo());
 		return false;
 	}
+	
 }
