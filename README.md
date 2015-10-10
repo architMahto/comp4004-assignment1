@@ -13,11 +13,27 @@ Student Number: 100762476
 
 ## Test cases ##
 
-### Testing constructors for Card.java and PokerHand.java ###
+### Testing constructors for each class ###
 
-Tested if each constructor properly initialized they objects they were intended for using testCardConstructors() and testPokerHandConstructor().
+Tested if each constructor properly initialized they objects they were intended for using testCardConstructors() and testPokerHandConstructor(). Also tested to see if they threw exceptions for illegal arguments
+
+### Testing getters and setters for Card.java ###
+
+Tested to see if the suit and rank for each card were instantiated properly.
+
+### Testing methods that check validity of poker hands in PokerHand.java ###
+
+Wrote tests that checked if each hand was properly evaluated.
+
+### Tested method that retrieved highest card in a hand ###
+
+Wrote a test to retrieve the highest card in each poker hand.
+
+### Tested getter methods for Player.java ###
+
+Wrote tests to see if each property in Player.java was initialized as expected
 
 ## How to run code ##
 
-Currently there is nothing in Main.java to run. So, the code is technically unexecutable.
+Code is written for Main.java. It has four poker hands initialized and passed into a Game object. The Game object ranks each hand and prints out the result.
 
