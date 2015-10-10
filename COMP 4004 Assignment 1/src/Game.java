@@ -1,7 +1,11 @@
+import java.util.SortedMap;
+
 
 public class Game {
 	
 	Player[] players;
+	SortedMap<Integer,Player> ranking;
+	Constants constants;
 	
 	public Game(Player[] players) {
 		if (invalidNumberOfPlayers(players))
@@ -15,9 +19,25 @@ public class Game {
 			this.players[i] = players[i];
 	}
 	
+	// assigns score of each ranking
+	public void assignRanking() {
+		for (Player p : this.players) {
+			ranking.put(constants.scoreOfHands.get(p.handType), p);
+		}
+	}
+	
+	// print out ranking of poker hands
+	public void printRankings() {
+		for (int s : this.ranking.keySet()) {
+			Player p = this.ranking.get(s);
+			System.out.println(p.playerInfo);
+		}
+	}
+	
 	private boolean invalidNumberOfPlayers(Player[] players) {
 		return (players.length < 2 || players.length > 4);
 	}
+	
 	
 	@SuppressWarnings("unused")
 	private boolean checkIdenticalPlayers(Player[] players) {
